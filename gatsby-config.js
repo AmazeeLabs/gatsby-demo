@@ -1,3 +1,4 @@
+const btoa = require("btoa");
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -7,6 +8,17 @@ module.exports = {
   plugins: [
     `gatsby-plugin-postcss`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: `Drupal`,
+        fieldName: `umami`,
+        url: `https://using-drupal.amazee.io/graphql`,
+        headers: {
+          Authorization: `Basic ${btoa("api-user:api-user")}`
+        }
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
